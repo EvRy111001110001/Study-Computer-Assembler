@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+    <changeSet id="1" author="evry">
+        <createTable tableName="processors">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="socket" type="varchar(255)"/>
+            <column name="base_clock" type="varchar(255)"/>
+            <column name="price" type="decimal(10,2)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="evry">
+        <createTable tableName="motherboards">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="socket" type="varchar(255)"/>
+            <column name="chipset" type="varchar(255)"/>
+            <column name="price" type="decimal(10,2)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="evry">
+        <createTable tableName="compatibility">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="processor_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_compatibility_processor"
+                             references="processors(id)"/>
+            </column>
+            <column name="motherboard_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_compatibility_motherboard"
+                             references="motherboards(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

@@ -39,3 +39,9 @@ out/
 # Gradle Wrapper scripts (not needed in repo)
 gradlew
 gradlew.bat
+
+# start containers
+startBD.sh
+
+#config
+.env
